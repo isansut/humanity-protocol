@@ -1,7 +1,7 @@
-const axios = require('axios');
-const chalk = require('chalk');
-const fs = require('fs');
-const tunnel = require('tunnel');
+import axios from 'axios';
+import chalk from 'chalk';
+import fs from 'fs';
+import tunnel from 'tunnel';
 
 // Tampilkan header
 console.log(chalk.yellow('\n=== HUMANITY PROTOCOL DAILY CLAIM BOT ==='));
@@ -78,18 +78,6 @@ function buatAxiosInstance(token, proxyUrl) {
     return axios.create(config);
 }
 
-// Fungsi untuk memformat saldo
-function formatSaldo(data) {
-    if (!data || !data.balance) return 'Data tidak tersedia';
-    return `Total Hadiah: ${chalk.green(data.balance.total_rewards)} HP\nHadiah Referral Hari Ini: ${chalk.yellow(data.balance.referral_rewards_today)} HP`;
-}
-
-// Fungsi untuk memformat respon klaim
-function formatResponKlaim(data) {
-    if (!data) return 'Data tidak tersedia';
-    return `Status: ${data.daily_claimed ? chalk.red('Sudah Diklaim') : chalk.green('Berhasil Diklaim')}\nPesan: ${chalk.blue(data.message)}`;
-}
-
 // Fungsi untuk mengecek IP
 async function cekIP(api) {
     try {
@@ -123,6 +111,18 @@ async function getUserInfo(api, nomorAkun) {
             console.error(chalk.red('Data Respon:'), error.response.data);
         }
     }
+}
+
+// Fungsi untuk memformat saldo
+function formatSaldo(data) {
+    if (!data || !data.balance) return 'Data tidak tersedia';
+    return `Total Hadiah: ${chalk.green(data.balance.total_rewards)} HP\nHadiah Referral Hari Ini: ${chalk.yellow(data.balance.referral_rewards_today)} HP`;
+}
+
+// Fungsi untuk memformat respon klaim
+function formatResponKlaim(data) {
+    if (!data) return 'Data tidak tersedia';
+    return `Status: ${data.daily_claimed ? chalk.red('Sudah Diklaim') : chalk.green('Berhasil Diklaim')}\nPesan: ${chalk.blue(data.message)}`;
 }
 
 // Fungsi untuk memeriksa saldo
@@ -226,4 +226,4 @@ async function jalankanLoop() {
 }
 
 // Mulai loop
-jalankanLoop().catch(console.error); 
+jalankanLoop().catch(console.error);
