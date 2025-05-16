@@ -1,0 +1,6 @@
+# Format: Satu token per baris
+# Baris yang dimulai dengan # akan diabaikan
+# Contoh token:
+TOKEN_ANDA_DISINI_1
+TOKEN_ANDA_DISINI_2
+TOKEN_ANDA_DISINI_3 
